@@ -1,0 +1,93 @@
+1. Прочитать в книге "Грокаем алгоритмы" или в предложенных материалах про алгоритмы и О-большое.
+Выполнено
+
+2. Определить сложность следующих алгоритмов:
+-. Поиск элемента массива с известным индексом
+O(log n)
+
+-. Дублирование одномерного массива через foreach
+O(n)
+
+-. Удаление элемента массива с известным индексом без сдвига
+O(1)
+
+-. Удаление элемента массива с неизвестным индексом без сдвига
+простой поиск - O(n)
+бинарный поиск - O(log n)
+
+-. Удаление элемента массива с неизвестным индексом со сдвигом
+поиск: простой O(n) / бинарный - O(log n) + сдвиг массива - O(n)
+итого (по наихудшему варианту сдвига): O(n)
+
+3. Определить сложность следующих алгоритмов. Сколько произойдет итераций?
+a)
+
+        int n = 10000;
+        List<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {		//O(n) = 13 * 10 000 = 13 000 (примерно)
+            for (int j = 1; j < n; j *= 2) {	//O(log n) = log 9 998 = 13 (примерно)
+                arrayList.add(i * j);
+            }
+        }
+Сложность - O(n log n)
+Кол-во итераций - примерно 13 000
+
+
+b)
+
+        int n = 10000;
+        List<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < n; i += 2) {	//O(n/2) = 5 000 * 5 000 = 25 000
+            for (int j = i; j < n; j++) {	//O(n/2) = 5 000
+                arrayList.add(i * j);
+            }
+        }
+Сложность - O(n^2)
+Кол-во итераций - 25 000
+
+
+с)
+
+        int n = 10000;
+        List<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < n; i ++) {		//O(n) = 5 000 * 10 000 = 50 000
+            for (int j = 0; j < n; j++) {	//O(n/2) = 5 000
+                arrayList.add(i * j);
+                n--;
+            }
+        }
+Сложность - O(n^2)
+Кол-во итераций - 50 000
+
+d)
+
+    factorial(BigInteger.valueOf(10000))
+
+public static BigInteger factorial(BigInteger n) {
+    if (n.equals(BigInteger.ONE)) {
+        return n;
+    }
+    return n.multiply(factorial(n.subtract(BigInteger.valueOf(1))));
+}
+
+
+Сложность - O(n!)
+Кол-во итераций - 9 999
+
+e)
+
+fib(BigInteger.valueOf(50));
+
+public static BigInteger fib(BigInteger n) {
+    if (n.equals(BigInteger.ONE)) {
+        return BigInteger.ZERO;
+    }
+    if (n.equals(BigInteger.TWO)) {
+        return BigInteger.ONE;
+    }
+    return fib(n.subtract(BigInteger.ONE)).add(fib(n.subtract(BigInteger.TWO)));
+}
+
+
+Сложность - O(n!)
+Кол-во итераций - 48
